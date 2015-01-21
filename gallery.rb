@@ -47,7 +47,7 @@ file_paths.each do |filepath|
 end
 
 html = get_HTML(img_tags)
-p html
+File.write("gallery.html", html)
 
 if __FILE__ == $0
 
