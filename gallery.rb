@@ -23,7 +23,7 @@ def get_HTML(img_tags)
 
   joined_img_tags = img_tags.map { |tag| "#{tag}\n"}.join
 
-	html1 = <<-HTML_1
+	html = <<-HTML
 	<!DOCTYPE html>
 	<html>
 	<head>
@@ -32,16 +32,11 @@ def get_HTML(img_tags)
 	<body>
 		<h1>My Gallery</h1>
 		#{joined_img_tags}
-  HTML_1
-
-
-  html2 = <<-HTML_2
 	</body>
 	</html>
-	HTML_2
+	HTML
 
-	html = html1 + joined_img_tags + html2
-	puts html
+	html
 end
 
 file_paths = get_file_paths(ARGV)
