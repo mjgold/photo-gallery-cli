@@ -2,8 +2,6 @@
 
 We're going to write a program that takes a set of images and generates an HTML image gallery.
 
-TEST
-
 Here is a (fake) story to give context to the kind of problem we are going to solve:
 
 > I'm a professional photographer and have my own personal website.  Whenever I take a new batch of photos, I like to select the best examples, use Dreamweaver create a new "gallery" page on my website, and upload the updated version of my website to my website host.
