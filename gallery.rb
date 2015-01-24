@@ -2,17 +2,21 @@
 
 # Example: ruby gallery.rb photos/bunny1.jpg photos/bunny2.jpg
 
+require 'FileUtils'
+
+### METHODS
+
 def get_file_paths(arguments)
   file_paths = []
   arguments.each do |arg|
-    file_paths << Dir.pwd + '/' + arg
+    file_paths << File.absolute_path(arg)
   end
 
   file_paths
 end
 
 def get_img_tag(filepath)
-  "<img src=\"" + filepath + "\">"
+  "<img src=\"#{filepath}\">"
 end
 
 # Stylesheet hardcoded for now
@@ -53,12 +57,17 @@ def add_css_to_img_tags(img_tags)
 end
 
 def make_div_tag(tag, col_num)
-  '<div class="col span_' \
-  + col_num.to_s \
-  + '_of_3">' \
-  + tag \
-  + '</div>'
+  "<div class='col span_#{col_num}_of_3'>#{tag}</div>"
 end
+
+def create_directory(dir = 'public', img_dir = 'images')
+  new_dir = "#{dir}/#{img_dir}"
+  FileUtils.mkdir_p new_dir
+
+  new_dir
+end
+
+### MAIN
 
 file_paths = get_file_paths(ARGV)
 
@@ -69,11 +78,16 @@ end
 
 html = get_html(img_tags)
 File.write('gallery.html', html)
+new_dir = create_directory # Get user-specified directories later
+FileUtils.copy(file_paths, new_dir)
 
-if __FILE__ == 'gallery.rb'
+### TESTS
+
+if __FILE__ == $PROGRAM_NAME
 
   arguments = ['photos/bunny1.jpg']
   file_paths = get_file_paths(arguments)
+  p get_img_tag(file_paths[0])
   p get_img_tag(file_paths[0]) == \
     "<img src=\"/Users/mark/Dropbox/Code/photo-gallery-cli/photos/bunny1.jpg\">"
 
