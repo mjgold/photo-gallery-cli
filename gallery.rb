@@ -27,7 +27,7 @@ def get_html(img_tags)
     <title>My Gallery</title>
   </head>
   <body>
-    <h1>My Gallery</h1>
+    <h1 id='topheader'>My Gallery</h1>
     <div class="section group">
   HTML
 
@@ -44,15 +44,20 @@ end
 
 def add_css_to_img_tags(img_tags)
   img_html = ''
-  img_tags.each_with_index do |tag, col|
-    img_html += '<div class="col span_' \
-    + ((col % 3) + 1).to_s \
-    + '_of_3">' \
-    + tag \
-    + '</div>'
+  img_tags.each_with_index do |tag, i|
+    col_num = i % 3 + 1
+    img_html += make_div_tag(tag, col_num)
   end
 
   img_html
+end
+
+def make_div_tag(tag, col_num)
+  '<div class="col span_' \
+  + col_num.to_s \
+  + '_of_3">' \
+  + tag \
+  + '</div>'
 end
 
 file_paths = get_file_paths(ARGV)
