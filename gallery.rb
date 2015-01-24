@@ -31,6 +31,18 @@ def get_html(img_tags)
     <div class="section group">
   HTML
 
+  img_html = add_css_to_img_tags(img_tags)
+
+  html2 = <<-HTML2
+    </div>
+  </body>
+  </html>
+  HTML2
+
+  html + img_html + html2
+end
+
+def add_css_to_img_tags(img_tags)
   img_html = ''
   img_tags.each_with_index do |tag, col|
     img_html += '<div class="col span_' \
@@ -40,13 +52,7 @@ def get_html(img_tags)
     + '</div>'
   end
 
-  html2 = <<-HTML2
-    </div>
-  </body>
-  </html>
-  HTML2
-
-  html + img_html + html2
+  img_html
 end
 
 file_paths = get_file_paths(ARGV)
