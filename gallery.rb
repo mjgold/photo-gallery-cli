@@ -23,30 +23,30 @@ def get_html(img_tags)
   <!DOCTYPE html>
   <html>
   <head>
-		<link rel="stylesheet" href="style.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="style.css" type="text/css" media="screen" />
     <title>My Gallery</title>
   </head>
   <body>
     <h1>My Gallery</h1>
-		<div class="section group">
-	HTML
+    <div class="section group">
+  HTML
 
-	img_html = ""
-	img_tags.each_with_index do |tag, col|
-		img_html += '<div class="col span_' + \
-		((col % 3) + 1).to_s + \
-		'_of_3">' + \
-		tag + \
-		'</div>'
-	end
+  img_html = ''
+  img_tags.each_with_index do |tag, col|
+    img_html += '<div class="col span_' \
+    + ((col % 3) + 1).to_s \
+    + '_of_3">' \
+    + tag \
+    + '</div>'
+  end
 
-	html2 = <<-HTML2
-		</div>
+  html2 = <<-HTML2
+    </div>
   </body>
   </html>
   HTML2
 
-	html + img_html + html2
+  html + img_html + html2
 end
 
 file_paths = get_file_paths(ARGV)
@@ -63,14 +63,14 @@ if __FILE__ == 'gallery.rb'
 
   arguments = ['photos/bunny1.jpg']
   file_paths = get_file_paths(arguments)
-	p get_img_tag(file_paths[0]) == \
-	  "<img src=\"/Users/mark/Dropbox/Code/photo-gallery-cli/photos/bunny1.jpg\">"
+  p get_img_tag(file_paths[0]) == \
+    "<img src=\"/Users/mark/Dropbox/Code/photo-gallery-cli/photos/bunny1.jpg\">"
 
   arguments = ['photos/bunny1.jpg', 'photos/bunny2.jpg']
   file_paths = get_file_paths(arguments)
   p get_img_tag(file_paths[0]) == \
-	  "<img src=\"/Users/mark/Dropbox/Code/photo-gallery-cli/photos/bunny1.jpg\">"
+    "<img src=\"/Users/mark/Dropbox/Code/photo-gallery-cli/photos/bunny1.jpg\">"
   p get_img_tag(file_paths[1]) == \
-	  "<img src=\"/Users/mark/Dropbox/Code/photo-gallery-cli/photos/bunny2.jpg\">"
+    "<img src=\"/Users/mark/Dropbox/Code/photo-gallery-cli/photos/bunny2.jpg\">"
 
 end
